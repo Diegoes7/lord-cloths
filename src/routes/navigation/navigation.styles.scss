@@ -9,6 +9,10 @@
         height: 100%;
         width: 70px;
         padding: 25px;
+
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 
     .nav-links-container {
@@ -21,6 +25,13 @@
         .nav-link {
             padding: 10px 15px;
             cursor: pointer;
+
+            &:hover {
+                background-color: black;
+                color: white;
+                border-radius: 10px;
+                transform: scale(1.1);
+            }
         }
     }
 }
