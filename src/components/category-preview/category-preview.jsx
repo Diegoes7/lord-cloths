@@ -3,7 +3,7 @@ import {
 	CategoryPreviewContainer,
 	Preview,
 	Title,
-} from "./caategory-preview.styles";
+} from "./category-preview.styles";
 
 const CategoryPreview = ({ title, products }) => {
 	return (

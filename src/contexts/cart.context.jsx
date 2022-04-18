@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import { createAction } from "../utils/reducer/reducer.utils";
 
+// Helper functions
 const addCartItem = (cartItems, productToAdd) => {
 	//find if cartItems contains productToAdd
 	const existingCartItem = cartItems.find(
@@ -41,7 +42,7 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
 const clearCartItem = (cartItems, cartItemToClear) =>
 	cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
-// Reducer
+// Reducer setup
 const CART_ACTION_TYPES = {
 	SHOW_CART: "SHOW_CART",
 	SET_CART_ITEMS: "SET_CART_ITEMS",
