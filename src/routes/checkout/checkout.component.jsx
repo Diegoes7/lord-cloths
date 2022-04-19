@@ -1,6 +1,10 @@
-import { useContext, useEffect } from "react";
-import { CartContext } from "../../contexts/cart.context";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	selectCartTotal,
+	selectCartItems,
+} from "../../store/cart/cart.selector";
+import { setShowCart } from "../../store/cart/cart.action";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
 import {
@@ -11,11 +15,13 @@ import {
 } from "./checkout.styles";
 
 const Checkout = () => {
-	const { cartItems, setShowCart, cartTotal } = useContext(CartContext);
+	const dispatch = useDispatch();
+	const cartItems = useSelector(selectCartItems);
+	const cartTotal = useSelector(selectCartTotal);
 
 	useEffect(() => {
-		setShowCart(false);
-	}, [setShowCart]);
+		dispatch(setShowCart(false));
+	}, [dispatch]);
 
 	return (
 		<CheckoutContainer>
