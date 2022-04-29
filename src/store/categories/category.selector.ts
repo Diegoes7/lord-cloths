@@ -1,7 +1,11 @@
 import { createSelector } from "reselect";
+import { RootState } from "../store";
+import { CategoriesState } from "./category.reducer";
+import { CategoryMap } from "./category.types";
 
 //* inintal selector give us back, a slice of reducer that we need
-const selectCategoryReducer = (state) => state.categories;
+const selectCategoryReducer = (state: RootState): CategoriesState =>
+	state.categories;
 
 //* this is memoized selector, its trun only selectCategoryReducer is changed
 export const selectCategories = createSelector(
@@ -13,12 +17,12 @@ export const selectCategories = createSelector(
 //* give back previously calculated value
 export const selectCategoriesMap = createSelector(
 	[selectCategories],
-	(categories) =>
+	(categories): CategoryMap =>
 		categories.reduce((acc, category) => {
 			const { title, items } = category;
 			acc[title.toLowerCase()] = items;
 			return acc;
-		}, {})
+		}, {} as CategoryMap)
 );
 
 export const selectIsLoading = createSelector(
