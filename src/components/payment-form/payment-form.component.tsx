@@ -25,7 +25,6 @@ const PaymentForm = () => {
 	const currentUser = useSelector(selectCurrentUser);
 	const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
-	console.log(<CardElement />);
 	const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (!stripe || !elements) {
@@ -44,9 +43,6 @@ const PaymentForm = () => {
 		const {
 			paymentIntent: { client_secret },
 		} = response;
-
-		console.log(response);
-		console.log(client_secret);
 
 		const cardDetails = elements.getElement(CardElement);
 		console.log(cardDetails);
