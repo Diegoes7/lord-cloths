@@ -12,7 +12,6 @@ import {
 	FormContainer,
 	PaymentButton,
 	PaymentFormContainer,
-	CardStyles,
 } from "./payment-form.styles";
 
 const isValidCardElement = (
@@ -45,12 +44,12 @@ const PaymentForm = () => {
 		const {
 			paymentIntent: { client_secret },
 		} = response;
-		
+
 		console.log(response);
-		console.log(client_secret)
-		
+		console.log(client_secret);
+
 		const cardDetails = elements.getElement(CardElement);
-		console.log(cardDetails)
+		console.log(cardDetails);
 
 		if (!isValidCardElement(cardDetails)) return;
 
@@ -78,9 +77,7 @@ const PaymentForm = () => {
 		<PaymentFormContainer>
 			<FormContainer onSubmit={paymentHandler}>
 				<h2>Credit Card Payment:</h2>
-				<CardStyles>
 					<CardElement />
-				</CardStyles>
 				<PaymentButton
 					buttonType={BUTTON_TYPE_CLASSES.inverted}
 					isLoading={isProcessingPayment}
