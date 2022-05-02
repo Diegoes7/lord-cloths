@@ -16,7 +16,8 @@ export const FormContainer = styled.form`
 	@media screen and (max-width: 600px) {
 		min-width: unset;
 		display: flex;
-		align-items: center;
+		flex-wrap: nowrap ;
+		justify-content: flex-start;
 	}
 `;
 
