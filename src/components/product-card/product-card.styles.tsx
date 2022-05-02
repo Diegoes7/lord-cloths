@@ -21,8 +21,15 @@ export const ProductCartContainer = styled.div`
 		position: absolute;
 		top: 255px;
 		display: none;
+
+		@media screen and (max-width: 800px) {
+			display: block;
+			padding: 0 10px;
+			opacity: 0.9;
+			min-width: unset;
+		}
 	}
-  
+
 	&:hover {
 		img {
 			opacity: 0.8;
@@ -30,6 +37,18 @@ export const ProductCartContainer = styled.div`
 		button {
 			opacity: 0.85;
 			display: flex;
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		&:hover {
+			img {
+				opacity: unset;
+			}
+			button {
+				opacity: unset;
+				display: flex;
+			}
 		}
 	}
 `;
@@ -40,6 +59,11 @@ export const Footer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	font-size: 18px;
+
+	@media screen and (max-width: 50px) {
+		width: 80%;
+		font-size: 14px;
+	}
 `;
 
 export const Name = styled.span`

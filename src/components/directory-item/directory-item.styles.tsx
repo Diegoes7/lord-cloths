@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-
 type BackgroundImageProps = {
 	imageUrl: string;
-}
+};
 
 export const BackgroundImage = styled.div<BackgroundImageProps>`
 	width: 100%;
@@ -38,6 +37,16 @@ export const Body = styled.div`
 	p {
 		font-weight: lighter;
 		font-size: 16px;
+	}
+
+	@media screen and (max-width: 660px) {
+		padding: 10px 10px;
+		margin: 0;
+	}
+
+	@media screen and (max-width: 400px) {
+		padding: 5px 5px;
+		margin: 0;
 	}
 `;
 export const DirectoryItemContainer = styled.div`

@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const SignUpContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 380px;
+	width: 45%;
+
+	@media screen and (max-width: 800px) {
+		width:70%;
+	}
 `;
 
 export const Heading = styled.h2`

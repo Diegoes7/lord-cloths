@@ -3,7 +3,12 @@ import styled from "styled-components";
 export const SignInContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 380px;
+	width: 45%;
+
+	@media screen and (max-width: 800px) {
+		margin-bottom: 2rem;
+		width:70%;
+	}
 `;
 export const SignInHeading = styled.h2`
 	margin: 10px 0;
