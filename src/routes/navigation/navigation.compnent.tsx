@@ -40,6 +40,7 @@ const Navigation = () => {
 					) : (
 						<NavLink to="/auth">SIGN IN</NavLink>
 					)}
+					<NavLink to="/contact">CONTACT</NavLink>
 					<CartIcon />
 				</NavLinks>
 				{showCart && <CartDropdown />}
