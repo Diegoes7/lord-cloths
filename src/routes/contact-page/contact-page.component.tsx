@@ -1,7 +1,8 @@
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, FC } from "react";
 
 import FormInput from "../../components/form-input/form-input.component";
 import Button from "../../components/button/button.component";
+import PopupMessage from "../../components/popup-message/popup-message.component";
 
 import {
 	ContactContainer,
@@ -19,7 +20,15 @@ const defaultComplaintFields = {
 	complaint: "",
 };
 
-const ContactPage = () => {
+type ShowModal = {
+	showModalProp: boolean;
+	showModal: string;
+	setShowModal: any;
+};
+
+const ContactPage: FC<ShowModal> = () => {
+	const [showModalProp, setShowModal] = useState(false);
+
 	const [complaintFields, setComplaintFields] = useState(
 		defaultComplaintFields
 	);
@@ -30,6 +39,7 @@ const ContactPage = () => {
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
+			setShowModal(true);
 			resetFormFields();
 		} catch (error) {
 			alert("Error in complaint creation");
@@ -43,7 +53,6 @@ const ContactPage = () => {
 		//spread the {} and modify one value of this {}
 		setComplaintFields({ ...complaintFields, [name]: value });
 	};
-
 
 	return (
 		<ContactContainer>
@@ -106,6 +115,7 @@ const ContactPage = () => {
 					</BuffInputForm>
 				</ContactFormComplaint>
 			</MapContainerInner>
+			<PopupMessage showModalProp={showModalProp} setShowModal={setShowModal} />
 			<ParagraphContainer>
 				<h2> Company Major Information</h2>
 				It is a long established fact that a reader will be distracted by the

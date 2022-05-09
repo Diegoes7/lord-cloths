@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Spinner from "./components/spinner/spinner.component";
 
 import { GlobalStyles } from "./global.styles";
+import ErrorBoundary from "./components/error-boundry/error-boundary.component";
 
 const Home = lazy(() => import("./routes/home/home.component"));
 const Navigation = lazy(() =>
@@ -28,18 +29,20 @@ const App = () => {
 	}, [dispatch]);
 
 	return (
-		<Suspense fallback={<Spinner />}>
-			<GlobalStyles />
-			<Routes>
-				<Route path="/" element={<Navigation />}>
-					<Route index element={<Home />} />
-					<Route path="shop/*" element={<Shop />} />
-					<Route path="auth" element={<Authentication />} />
-					<Route path="checkout" element={<Checkout />} />
-					<Route path="contact" element={<ContactPage />} />
-				</Route>
-			</Routes>
-		</Suspense>
+		<ErrorBoundary>
+			<Suspense fallback={<Spinner />}>
+				<GlobalStyles />
+				<Routes>
+					<Route path="/" element={<Navigation />}>
+						<Route index element={<Home />} />
+						<Route path="shop/*" element={<Shop />} />
+						<Route path="auth" element={<Authentication />} />
+						<Route path="checkout" element={<Checkout />} />
+						<Route path="contact" element={<ContactPage />} />
+					</Route>
+				</Routes>
+			</Suspense>
+		</ErrorBoundary>
 	);
 };
 
