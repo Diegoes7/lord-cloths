@@ -6,8 +6,14 @@ export const ContactContainer = styled.div`
 	flex-direction: column;
 	margin: 20px;
 	padding-bottom: 25px;
-	width: auto;
+	width: 100%;
 	display: inline-block;
+
+	@media screen and (max-width: 540px) {
+		margin: 0px;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 export const MerchaintInfo = styled.div`
@@ -27,10 +33,14 @@ export const MapImage = styled.div`
 	padding: 15px;
 	overflow: hidden;
 	background: none !important;
-	height: 500px;
+	height: 350px;
 	width: 70%;
 	border-radius: 15px;
-	gap: 15px;
+
+	@media screen and (max-width: 540px) {
+		width: 70%;
+		gap: 0px;
+	}
 `;
 
 export const BuffInputForm = styled(Group)`
@@ -58,6 +68,15 @@ export const MapContainerInner = styled.div`
 	background-color: #fbf6f6ec;
 	border-radius: 15px;
 	padding: 15px;
+
+	@media screen and (max-width: 800px) {
+		flex-direction: column;
+		margin: 0;
+	}
+
+	@media screen and (max-width: 530px) {
+		align-items: center;
+	}
 `;
 
 export const ParagraphContainer = styled.div`

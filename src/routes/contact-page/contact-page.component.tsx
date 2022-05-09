@@ -78,10 +78,7 @@ const ContactPage: FC<ShowModal> = () => {
 						frameBorder="0"
 						scrolling="no"
 					></iframe>
-					<a href="https://www.whatismyip-address.com/nordvpn-coupon/">
-						<br />
-						The Place
-					</a>
+					<div>The Place</div>
 				</MapImage>
 				<ContactFormComplaint onSubmit={handleSubmit}>
 					<h2>Contact Form</h2>
