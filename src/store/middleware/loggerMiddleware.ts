@@ -12,6 +12,14 @@ export const loggerMiddleware: Middleware<{}, RootState> =
 
 		next(action);
 
-		// after next got called we see new state
+		// after next get called we see new state
 		console.log("next state: ", store.getState());
 	};
+
+
+	// const thunkMiddleware = (store) =>(next) => (action) => {
+	// 	if(typeof action  === 'function') {
+	// 		action(dispatch)
+	// 	}
+	// } 
+	// async behavior has data, isLoading, error

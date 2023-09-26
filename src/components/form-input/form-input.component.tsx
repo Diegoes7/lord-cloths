@@ -1,7 +1,7 @@
-import { InputHTMLAttributes, FC } from "react";
-import { FormInputLabel, Group, Input } from "./form-input.styles";
+import { InputHTMLAttributes, FC } from 'react'
+import { FormInputLabel, Group, Input } from './form-input.styles'
 
-type FormInputProps = { label: string } & InputHTMLAttributes<HTMLInputElement>;
+type FormInputProps = { label: string } & InputHTMLAttributes<HTMLInputElement>
 
 const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
 	return (
@@ -19,7 +19,7 @@ const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
 				</FormInputLabel>
 			)}
 		</Group>
-	);
-};
+	)
+}
 
-export default FormInput;
+export default FormInput

@@ -1,118 +1,124 @@
-import { useState, FormEvent, ChangeEvent, FC } from "react";
+import { useState, FormEvent, ChangeEvent } from 'react'
 
-import FormInput from "../../components/form-input/form-input.component";
-import Button from "../../components/button/button.component";
-import PopupMessage from "../../components/popup-message/popup-message.component";
+import FormInput from '../../components/form-input/form-input.component'
+import Button from '../../components/button/button.component'
+import PopupMessage from '../../components/popup-message/popup-message.component'
 
 import {
 	ContactContainer,
 	ContactFormComplaint,
 	MapContainerInner,
-	MerchaintInfo,
+	MerchantInfo,
 	MapImage,
 	ParagraphContainer,
 	BuffInputForm,
-} from "./contact-page.styles";
-import { AnyAction } from "redux";
+} from './contact-page.styles'
+import { AnyAction } from 'redux'
 
-const defaultComplaintFields = {
-	email: "",
-	complaint: "",
-};
+export type FieldsProps = {
+	email: string
+	complaint: string
+}
 
-type ShowModal = {
-	showModalProp: boolean;
-	showModal: string;
-	setShowModal: any;
-};
+export const defaultComplaintFields: FieldsProps = {
+	email: '',
+	complaint: '',
+}
 
-const ContactPage: FC<ShowModal> = () => {
-	const [showModalProp, setShowModal] = useState(false);
+const ContactPage = () => {
+	const [showModalProp, setShowModal] = useState(false)
 
-	const [complaintFields, setComplaintFields] = useState(
-		defaultComplaintFields
-	);
-	const { email, complaint } = complaintFields;
-
-	const resetFormFields = () => setComplaintFields(defaultComplaintFields);
+	const [complaintFields, setComplaintFields] = useState(defaultComplaintFields)
+	const { email, complaint } = complaintFields
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+		event.preventDefault()
+
 		try {
-			setShowModal(true);
-			resetFormFields();
+			setShowModal(true)
 		} catch (error) {
-			alert("Error in complaint creation");
+			alert('Error in complaint creation')
 		}
-	};
+	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement> | AnyAction) => {
 		// get information out of event {}
-		const { name, value } = event.target;
+		const { name, value } = event.target
 
 		//spread the {} and modify one value of this {}
-		setComplaintFields({ ...complaintFields, [name]: value });
-	};
+		setComplaintFields({ ...complaintFields, [name]: value })
+	}
 
 	return (
 		<ContactContainer>
-			<MerchaintInfo>
+			<MerchantInfo>
 				<h1>CONTACT US: DragonFlight Ltd.</h1>
 				<h2>
-					{" "}
-					Chairman: <strong>Diego ElRey </strong>
+					{' '}
+					Chairman: <strong>Diego (X) ElRey</strong>
 				</h2>
 				<h2>
 					Mobile Phone: <span>+0054654645890</span>
 				</h2>
-				<h2>Address: San Fransisco, Portal to Castle Black, 777</h2>
-			</MerchaintInfo>
+				<h2>Address: San Francisco, Portal to Castle Black, 777</h2>
+			</MerchantInfo>
 			<MapContainerInner>
 				<MapImage>
+					<div style={{ margin: '0.5rem' }}>
+						<span>Here, We wait you in our shop</span>
+					</div>
 					<iframe
-						title={"diego"}
-						width="300"
-						height="300"
-						id="gmap_canvas"
-						src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
-						frameBorder="0"
-						scrolling="no"
+						title={'diego'}
+						width='400'
+						height='500'
+						style={{ borderRadius: '0.75rem' }}
+						id='gmap_canvas'
+						src='https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed'
+						frameBorder='0'
+						scrolling='no'
 					></iframe>
-					<div>The Place</div>
 				</MapImage>
 				<ContactFormComplaint onSubmit={handleSubmit}>
 					<h2>Contact Form</h2>
 					<BuffInputForm>
 						<FormInput
-							label="Email"
-							type="email"
-							name="email"
-							value={"info.complaint.shop@gmail.com"}
+							label='Contact Email'
+							type='email'
+							name='email'
+							value={'info.complaint.shop@gmail.com'}
 							required
 							onChange={handleChange}
 						/>
 						<FormInput
-							label="Email"
-							type="email"
-							name="email"
+							label='Email'
+							type='email'
+							name='email'
 							value={email}
 							required
 							onChange={handleChange}
 						/>
-
 						<h2> Type Issue here</h2>
 						<textarea
-							placeholder="Type here"
-							name="complaint"
+							placeholder='Type here'
+							name='complaint'
 							value={complaint}
 							required
 							onChange={handleChange}
+							style={{ borderRadius: '0.75rem', padding: '.5rem' }}
 						/>
-						<Button type="submit">Send</Button>
+						<Button type='submit'>Send</Button>
 					</BuffInputForm>
 				</ContactFormComplaint>
 			</MapContainerInner>
-			<PopupMessage showModalProp={showModalProp} setShowModal={setShowModal} />
+			{showModalProp && (
+				<PopupMessage
+					showModalProp={showModalProp}
+					setShowModal={setShowModal}
+					complaint={complaint}
+					email={email}
+					setState={setComplaintFields}
+				/>
+			)}
 			<ParagraphContainer>
 				<h2> Company Major Information</h2>
 				It is a long established fact that a reader will be distracted by the
@@ -126,7 +132,7 @@ const ContactPage: FC<ShowModal> = () => {
 				accident, sometimes on purpose (injected humour and the like).
 			</ParagraphContainer>
 		</ContactContainer>
-	);
-};
+	)
+}
 
-export default ContactPage;
+export default ContactPage

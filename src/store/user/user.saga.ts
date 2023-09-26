@@ -106,13 +106,15 @@ export function* signInAfterSignUp({ payload: { user, additionalDetails } }: Sig
 	yield* call(getSnapshotFromUserAuth, user, additionalDetails);
 }
 
-// Entry points to saga flow, start the circle
-export function* onGoogleSignInStart() {
-	yield* takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START, signInWithGoogle);
-}
+//! Entry points to saga flow, start the circle saga
 export function* onCheckUserSession() {
 	yield* takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION, isUserAuthenticated);
 }
+
+export function* onGoogleSignInStart() {
+	yield* takeLatest(USER_ACTION_TYPES.GOOGLE_SIGN_IN_START, signInWithGoogle);
+}
+
 export function* onEmailSignInStart() {
 	yield* takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, signInWithEmail);
 }
@@ -129,6 +131,7 @@ export function* onSignOutStart() {
 	yield* takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
 
+//i Pass the all User_Sagas in the Root_Saga
 export function* userSagas() {
 	yield* all([
 		call(onCheckUserSession),

@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import { Group } from "../../components/form-input/form-input.styles";
+import styled from 'styled-components'
+import { Group } from '../../components/form-input/form-input.styles'
 
 export const ContactContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 20px;
+	margin: 1rem 0;
 	padding-bottom: 25px;
 	width: 100%;
 	display: inline-block;
@@ -14,12 +14,17 @@ export const ContactContainer = styled.div`
 		align-items: center;
 		justify-content: center;
 	}
-`;
+`
 
-export const MerchaintInfo = styled.div`
+export const MerchantInfo = styled.div`
 	display: flex;
 	flex-direction: column;
-`;
+	align-items: center;
+	border: 0.2rem solid black;
+	border-radius: 0.75rem;
+	padding: 0.25rem 0;
+	text-decoration: underline;
+`
 
 // export const MapContainer = styled.div`
 // 	position: relative;
@@ -30,59 +35,60 @@ export const MerchaintInfo = styled.div`
 
 export const MapImage = styled.div`
 	display: flex;
-	padding: 15px;
+	flex-direction: column;
+	padding: 2rem;
 	overflow: hidden;
 	background: none !important;
-	height: 350px;
-	width: 70%;
-	border-radius: 15px;
-
-	@media screen and (max-width: 540px) {
-		width: 70%;
-		gap: 0px;
-	}
-`;
+	height: 35rem;
+	border-radius: 2rem;
+`
 
 export const BuffInputForm = styled(Group)`
-	margin: 0 10px;
-`;
+	margin: 0 0.625rem;
+`
 
 export const ContactFormComplaint = styled.form`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-content: flex-start;
-	height: 600px;
+	height: 37.5rem;
+	text-decoration: underline;
 
 	textarea {
-		height: 150px;
-		width: 250px;
-		margin-bottom: 10px;
+		height: 9.375rem;
+		width: 18.625rem;
+		margin-bottom: 0.625rem;
 	}
-`;
+`
 
 export const MapContainerInner = styled.div`
+	margin: 1.75rem 0;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	background-color: #fbf6f6ec;
-	border-radius: 15px;
-	padding: 15px;
+	justify-content: space-around;
+	background-color: #d5d6dc;
+	border-radius: 0.9375rem;
+	padding: 0.9375rem;
 
-	@media screen and (max-width: 800px) {
+	@media screen and (max-width: 900px) {
 		flex-direction: column;
-		margin: 0;
+	}
+
+	@media screen and (max-width: 700px) {
+		width: 100%;
+		padding: 0.2rem;
 	}
 
 	@media screen and (max-width: 530px) {
 		align-items: center;
 	}
-`;
+`
 
 export const ParagraphContainer = styled.div`
-	margin-top: 20px;
+	margin-top: 1.75rem;
 	background-color: #2bc85a;
 	color: white;
 	padding: 20px;
 	border-radius: 15px;
-`;
+`

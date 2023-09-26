@@ -14,7 +14,7 @@ const CART_INITIAL_STATE: CartState = {
 
 export const cartReducer = (
 	state = CART_INITIAL_STATE,
-	action: AnyAction
+	action: AnyAction,
 ): CartState => {
 	if (setShowCart.match(action)) return { ...state, showCart: action.payload };
 

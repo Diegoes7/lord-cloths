@@ -6,7 +6,7 @@ import {
 } from "../../store/cart/cart.selector";
 import { setShowCart } from "../../store/cart/cart.action";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import PaymentForm from "../../components/payment-form/payment-form.component";
+// import PaymentForm from "../../components/payment-form/payment-form.component";
 
 import {
 	CheckoutContainer,
@@ -14,8 +14,11 @@ import {
 	HeaderBlock,
 	Total,
 } from "./checkout.styles";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/button/button.component";
 
 const Checkout = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const cartItems = useSelector(selectCartItems);
 	const cartTotal = useSelector(selectCartTotal);
@@ -47,7 +50,8 @@ const Checkout = () => {
 				<CheckoutItem key={cartItem.id} cartItem={cartItem} />
 			))}
 			<Total>Total: ${cartTotal}</Total>
-			<PaymentForm />
+			{/* <PaymentForm /> */}
+			<Button onClick={() => navigate('/payment')}>Payment</Button>
 		</CheckoutContainer>
 	);
 };

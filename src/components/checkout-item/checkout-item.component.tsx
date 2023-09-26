@@ -1,12 +1,12 @@
-import { FC, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector";
+import { FC, memo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCartItems } from '../../store/cart/cart.selector'
 import {
 	clearItemFromCart,
 	addItemToCart,
 	removeItemFromCart,
-} from "../../store/cart/cart.action";
-import { CartItem } from "../../store/cart/cart.types";
+} from '../../store/cart/cart.action'
+import { CartItem } from '../../store/cart/cart.types'
 
 import {
 	CheckoutItemContainer,
@@ -16,27 +16,31 @@ import {
 	Arrow,
 	Value,
 	RemoveButton,
-} from "./checkout-item.styles";
+} from './checkout-item.styles'
 
 type CheckoutItemProps = {
-	cartItem: CartItem;
-};
+	cartItem: CartItem
+}
 
 const CheckoutItem: FC<CheckoutItemProps> = memo(({ cartItem }) => {
-	const { name, imageUrl, price, quantity } = cartItem;
-	const cartItems = useSelector(selectCartItems);
-	const dispatch = useDispatch();
+	const { name, imageUrl, price, quantity } = cartItem
+	const cartItems = useSelector(selectCartItems)
+	const dispatch = useDispatch()
 
 	const clearItemHandler = () =>
-		dispatch(clearItemFromCart(cartItems, cartItem));
-	const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem));
+		dispatch(clearItemFromCart(cartItems, cartItem))
+	const addItemHandler = () => dispatch(addItemToCart(cartItems, cartItem))
 	const removeItemHandler = () =>
-		dispatch(removeItemFromCart(cartItems, cartItem));
+		dispatch(removeItemFromCart(cartItems, cartItem))
 
 	return (
 		<CheckoutItemContainer>
 			<ImageContainer>
-				<img src={imageUrl} alt={`${name}`} />
+				<img
+					src={imageUrl}
+					alt={`${name}`}
+					style={{ borderRadius: '0.75rem' }}
+				/>
 			</ImageContainer>
 			<BaseSpan> {name} </BaseSpan>
 			<Quantity>
@@ -47,7 +51,7 @@ const CheckoutItem: FC<CheckoutItemProps> = memo(({ cartItem }) => {
 			<BaseSpan> ${price}</BaseSpan>
 			<RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
 		</CheckoutItemContainer>
-	);
-});
+	)
+})
 
-export default CheckoutItem;
+export default CheckoutItem

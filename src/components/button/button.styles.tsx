@@ -38,8 +38,8 @@ export const GoogleSignInButton = styled(BaseButton)`
 	color: white;
 
 	&:hover {
-		background-color: #357ae8;
-		border: none;
+		background-color: white;
+		border: 0.05rem solid black;
 	}
 `;
 

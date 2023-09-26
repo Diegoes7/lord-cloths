@@ -1,22 +1,24 @@
-import { FC } from "react";
-import ProductCard from "../product-card/product-card.component";
-import { CategoryItem } from "../../store/categories/category.types";
+import { FC } from 'react'
+import ProductCard from '../product-card/product-card.component'
+import { CategoryItem } from '../../store/categories/category.types'
 
 import {
 	CategoryPreviewContainer,
 	Preview,
 	Title,
-} from "./category-preview.styles";
+} from './category-preview.styles'
 
 type CategoryPreviewProps = {
-	title: string;
-	products: CategoryItem[];
-};
+	title: string
+	products: CategoryItem[]
+}
 
 const CategoryPreview: FC<CategoryPreviewProps> = ({ title, products }) => {
 	return (
 		<CategoryPreviewContainer>
-			<Title to={title}>{title.toUpperCase()}</Title>
+			<Title to={title}>
+				<span>{title.toUpperCase()}</span>
+			</Title>
 			<Preview>
 				{products
 					.filter((_, idx) => idx < 4)
@@ -25,7 +27,7 @@ const CategoryPreview: FC<CategoryPreviewProps> = ({ title, products }) => {
 					))}
 			</Preview>
 		</CategoryPreviewContainer>
-	);
-};
+	)
+}
 
-export default CategoryPreview;
+export default CategoryPreview

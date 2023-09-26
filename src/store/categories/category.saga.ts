@@ -1,10 +1,7 @@
 import {takeLatest, all, call, put } from 'typed-redux-saga/macro'
 import { getCollectionAndDocuments } from '../../utils/firebase/firebase.utils';
-
 import { fetchCategoriesSuccess, fetchCategoriesFailed } from './category.action';
 import { CATEGORIES_ACTION_TYPES } from './category.types';
-
-
 
 export function* fetchCategoriesAsync() {
 	try {
@@ -19,6 +16,11 @@ export function* onFetchCategories(){
     yield* takeLatest(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START, fetchCategoriesAsync)
 }
 
+//! accumulator that hold all your sagas related to the category 
 export function* categoriesSaga(){
 yield* all([call(onFetchCategories)])
 }
+
+//$ all - effect, say run anything inside, and only complete when all is done, take []
+//$ have a function and want to turn it on effect wrap it in call method
+//$ put instead of dispatch

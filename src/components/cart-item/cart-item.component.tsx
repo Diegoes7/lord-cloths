@@ -11,7 +11,7 @@ const CartItem: FC<CartItemProps> = memo(({ cartItem }) => {
 	const { name, imageUrl, price, quantity } = cartItem;
 	return (
 		<CartItemContainer>
-			<img src={imageUrl} alt={`${name}`} />
+			<img src={imageUrl} alt={`${name}`} style={{ borderRadius: '.5rem'}}/>
 			<ItemDetails>
 				<span className="name">{name}</span>
 				<span className="price">

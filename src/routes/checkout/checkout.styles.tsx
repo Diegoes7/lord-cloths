@@ -34,7 +34,8 @@ export const HeaderBlock = styled.div`
 `;
 
 export const Total = styled.span`
-	margin-top: 30px;
+	margin-top: 1.3rem;
+	margin-bottom: 1.5rem;
 	margin-left: auto;
 	font-size: 36px;
 `;

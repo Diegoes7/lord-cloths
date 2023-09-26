@@ -22,8 +22,8 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	const dispatch = useDispatch();
 	const cartItems = useSelector(selectCartItems);
 
-	
 	const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
+	
 	return (
 		<ProductCartContainer>
 			<img src={imageUrl} alt={`${name}`} />

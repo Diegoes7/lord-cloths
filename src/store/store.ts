@@ -28,7 +28,8 @@ const persistConfig: ExtendedPersistConfig = {
 const sagaMiddleware = createSagaMiddleware();
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-// little library helper run before action hit the reducer
+
+//! little library helper run before action hit the reducer
 const middleWares = [
 	process.env.NODE_ENV !== "production" && logger,
 	sagaMiddleware,
@@ -46,4 +47,4 @@ export const store = createStore(persistedReducer, undefined, composeEnhancers);
 
 sagaMiddleware.run(rootSaga);
 
-export const persistor = persistStore(store);
+export const persister = persistStore(store);

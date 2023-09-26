@@ -3,22 +3,21 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./store/store";
+import { store, persister } from "./store/store";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "./utils/stripe/stripe.utils";
 
 import App from "./App";
-// import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorker from "./serviceWorkerRegistration";
 
 
 const container = document.getElementById("root");
-const root = createRoot(container);
+const root = createRoot(container as HTMLElement);
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
+			<PersistGate loading={null} persistor={persister}>
 				<BrowserRouter>
 					<Elements stripe={stripePromise ?? ""}>
 						<App />
