@@ -19,6 +19,7 @@ const userSlice = createSlice({
 	initialState: INITIAL_STATE,
 	reducers: {
 		checkUserSession(state) {
+			// eslint-disable-next-line no-self-assign
 			state.currentUser = state.currentUser
 		},
 		googleSignInStart(state) {
