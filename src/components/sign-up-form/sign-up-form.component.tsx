@@ -1,52 +1,56 @@
-import { useState, FormEvent, ChangeEvent } from "react";
-import {AuthError, AuthErrorCodes} from 'firebase/auth';
-import { useDispatch } from "react-redux";
-import { signUpStart } from "../../store/user/user.action";
+import { useState, FormEvent, ChangeEvent } from 'react'
+import { AuthError, AuthErrorCodes } from 'firebase/auth'
+import { useDispatch, useSelector } from 'react-redux'
+import { signUpStart } from '../../store/user/user.slice'
 
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import FormInput from '../form-input/form-input.component'
+import Button from '../button/button.component'
 
-import { Heading, SignUpContainer } from "./sign-up-form.styles";
+import { Heading, SignUpContainer } from './sign-up-form.styles'
+import { selectCurrentUser } from '../../store/user/user.selector'
 
 const defaultFormFields = {
-	displayName: "",
-	email: "",
-	password: "",
-	confirmPassword: "",
-};
+	displayName: '',
+	email: '',
+	password: '',
+	confirmPassword: '',
+}
 
 const SignUpForm = () => {
-	const [formFields, setFormFields] = useState(defaultFormFields);
-	const { displayName, email, password, confirmPassword } = formFields;
-	const dispatch = useDispatch();
+	const [formFields, setFormFields] = useState(defaultFormFields)
+	const { displayName, email, password, confirmPassword } = formFields
+	const dispatch = useDispatch()
+	const signInUser = useSelector(selectCurrentUser)
 
-	const resetFormFields = () => setFormFields(defaultFormFields);
+	const resetFormFields = () => setFormFields(defaultFormFields)
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+		event.preventDefault()
 		if (password !== confirmPassword) {
-			alert("Passwords do NOT match!");
-			return;
+			alert('Passwords do NOT match!')
+			return
 		}
 		try {
-			dispatch(signUpStart(email, password, displayName));
-			resetFormFields();
+			dispatch(signUpStart({ email, password, displayName }))
+			resetFormFields()
 		} catch (error) {
 			if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
-				alert("Cannot create user, email already in use");
+				alert('Cannot create user, email already in use')
 			} else {
-				console.log("Error in user creation", (error as AuthError).message);
+				console.log('Error in user creation', (error as AuthError).message)
 			}
 		}
-	};
+	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		// get information out of event {}
-		const { name, value } = event.target;
+		const { name, value } = event.target
 
 		//spread the {} and modify one value of this {}
-		setFormFields({ ...formFields, [name]: value });
-	};
+		setFormFields({ ...formFields, [name]: value })
+	}
+
+	const existingUser = signInUser !== null
 
 	return (
 		<SignUpContainer>
@@ -54,41 +58,47 @@ const SignUpForm = () => {
 			<span>Sign Up with email and password</span>
 			<form onSubmit={handleSubmit}>
 				<FormInput
-					label="Display Name"
-					type="text"
-					name="displayName"
-					value={displayName}
+					label='Display Name'
+					type='text'
+					name='displayName'
+					value={displayName.trim()}
 					required
 					onChange={handleChange}
+					disabled={existingUser}
 				/>
 				<FormInput
-					label="Email"
-					type="email"
-					name="email"
-					value={email}
+					label='Email'
+					type='email'
+					name='email'
+					value={email.trim()}
 					required
 					onChange={handleChange}
+					disabled={existingUser}
 				/>
 				<FormInput
-					label="Password"
-					type="password"
-					name="password"
-					value={password}
+					label='Password'
+					type='password'
+					name='password'
+					value={password.trim()}
 					required
 					onChange={handleChange}
+					disabled={existingUser}
 				/>
 				<FormInput
-					label="Confirm Password"
-					type="password"
-					name="confirmPassword"
+					label='Confirm Password'
+					type='password'
+					name='confirmPassword'
 					value={confirmPassword}
 					required
 					onChange={handleChange}
+					disabled={existingUser}
 				/>
-				<Button type="submit">Sign Up</Button>
+				<Button disabled={existingUser} type='submit'>
+					Sign Up
+				</Button>
 			</form>
 		</SignUpContainer>
-	);
-};
+	)
+}
 
-export default SignUpForm;
+export default SignUpForm

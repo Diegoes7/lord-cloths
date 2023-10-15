@@ -57,7 +57,7 @@ export const ContactFormComplaint = styled.form`
 
 	textarea {
 		height: 9.375rem;
-		width: 18.625rem;
+		width: 20.625rem;
 		margin-bottom: 0.625rem;
 	}
 `

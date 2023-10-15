@@ -8,7 +8,7 @@ export const PaymentFormContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #b9b8cb;
+	background-color: #bec3ca;
 	border-radius: 20px;
 `
 // export const

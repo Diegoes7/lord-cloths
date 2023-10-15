@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { SpinnerContainer } from "../spinner/spinner.styles";
+import styled from 'styled-components'
+import { SpinnerContainer } from '../spinner/spinner.styles'
 
 export const BaseButton = styled.button`
 	min-width: 165px;
@@ -13,7 +13,7 @@ export const BaseButton = styled.button`
 	background-color: black;
 	color: white;
 	text-transform: uppercase;
-	font-family: "Metal Mania";
+	font-family: 'Metal Mania';
 	font-weight: bolder;
 	border: none;
 	cursor: pointer;
@@ -27,21 +27,34 @@ export const BaseButton = styled.button`
 		border: 1px solid black;
 	}
 
+	&:disabled {
+		color: #b0b0cb;
+		background-color: #120202;
+		border: none;
+	}
+
 	@media screen and (max-width: 860px) {
 		min-width: unset;
 		line-height: 10px;
 		padding: 20px;
 	}
-`;
+`
 export const GoogleSignInButton = styled(BaseButton)`
 	background-color: #4285f4;
 	color: white;
 
 	&:hover {
 		background-color: white;
-		border: 0.05rem solid black;
+		color: #4285f4;
+		border: 0.05rem solid #4285f4;
 	}
-`;
+
+	&:disabled {
+		color: #b0b0cb;
+		background-color: #4285f4;
+		border: none;
+	}
+`
 
 export const InvertedButton = styled(BaseButton)`
 	background-color: white;
@@ -53,9 +66,9 @@ export const InvertedButton = styled(BaseButton)`
 		color: white;
 		border: none;
 	}
-`;
+`
 
 export const ButtonSpinner = styled(SpinnerContainer)`
 	width: 30px;
 	height: 30px;
-`;
+`

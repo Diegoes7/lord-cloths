@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-const hovr = css`
-	transform: scale(1.2);
+const hoverStyles = css`
+	transform: scale(1.1);
 	transition: ease-in-out 0.7s;
 `
 
 export const NavigationContainer = styled.div`
-	height: 70px;
+	height: 4.375rem;
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
-	margin-bottom: 25px;
+	margin-bottom: 1rem;
 	border-bottom: 2px solid black;
 	background-color: #d4dae1;
 	border-radius: 0.75rem;
@@ -23,13 +23,19 @@ export const NavigationContainer = styled.div`
 	}
 `
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled(NavLink).attrs({
+	activeclassname: 'active',
+})`
+	&.active {
+		background-color: white;
+	}
+
 	height: 100%;
 	width: 70px;
 	padding: 0.8rem;
 
 	&:hover {
-		${hovr}
+		${hoverStyles}
 	}
 	@media screen and (max-width: 800px) {
 		width: 50px;
@@ -49,20 +55,36 @@ export const NavLinks = styled.div`
 	}
 `
 
-export const NavLink = styled(Link)`
+export const NavLinkCustom = styled(NavLink).attrs({
+	activeclassname: 'active',
+})`
+	&.active {
+		border-bottom: 0.2rem solid black;
+		padding: 0.7rem 1rem 0.3rem;
+		font-weight: bold;
+		transition: ease-in-out 0.4s;
+	}
+
 	padding: 10px 15px;
 	cursor: pointer;
+	margin-right: 0.3rem;
+	border-radius: 0.75rem;
 
 	&:hover {
-		/* ${hovr} */
 		background-color: black;
 		color: white;
-		border-radius: 10px;
-		transform: scale(1.1);
+		border-radius: 0.75rem;
+		transform: scale(1.05);
 		transition: ease-in-out 0.7s;
 	}
+`
 
-	&:active {
-		background-color: blue;
-	}
+export const WelcomeMessage = styled.div`
+	margin-left: 0.5rem;
+	margin-bottom: 0.7rem;
+`
+export const WelcomeMessageText = styled.span`
+	background-color: #83c3f0;
+	padding: 0.4rem 0.8rem;
+	border-radius: 0.75rem;
 `

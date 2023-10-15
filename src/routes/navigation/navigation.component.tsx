@@ -1,53 +1,76 @@
-import { Fragment } from "react";
-import { Outlet } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { Fragment, useCallback } from 'react'
+import { Outlet } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { signOutStart } from "../../store/user/user.action";
-import { selectShowCart } from "../../store/cart/cart.selector";
-import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import CartIcon from "../../components/cart-icon/cart-icon.component";
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { signOutStart } from '../../store/user/user.slice'
+import { selectShowCart } from '../../store/cart/cart.selector'
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component'
+import CartIcon from '../../components/cart-icon/cart-icon.component'
+import { selectCurrentUser } from '../../store/user/user.selector'
 
-import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
 
 import {
 	NavigationContainer,
 	LogoContainer,
 	NavLinks,
-	NavLink,
-} from "./navigation.styles";
+	NavLinkCustom,
+	WelcomeMessage,
+	WelcomeMessageText,
+} from './navigation.styles'
 
 const Navigation = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-	const currentUser = useSelector(selectCurrentUser);
-	const showCart = useSelector(selectShowCart);
+	const currentUser = useSelector(selectCurrentUser)
+	const showCart = useSelector(selectShowCart)
 
-	const signOutUser = () => dispatch(signOutStart());
+	const signOutUser = () => dispatch(signOutStart())
+
+	const welcomeMessage = useCallback(() => {
+		const setProp =
+			currentUser?.displayName === null
+				? currentUser.email
+				: currentUser?.displayName
+		if (setProp) {
+			return (
+				<WelcomeMessage>
+					{' '}
+					<WelcomeMessageText>
+						{' '}
+						{setProp.toUpperCase()} is logged in.
+					</WelcomeMessageText>
+				</WelcomeMessage>
+			)
+		} else {
+			return ''
+		}
+	}, [currentUser?.displayName, currentUser?.email])
 
 	return (
 		<Fragment>
 			<NavigationContainer>
-				<LogoContainer to="/">
-					<CrwnLogo className="logo" />
+				<LogoContainer to='/'>
+					<CrwnLogo className='logo' />
 				</LogoContainer>
 				<NavLinks>
-					<NavLink to="/shop">SHOP</NavLink>
+					<NavLinkCustom to='/shop'>SHOP</NavLinkCustom>
 					{currentUser ? (
-						<NavLink as="span" onClick={signOutUser}>
+						<NavLinkCustom as='span' onClick={signOutUser}>
 							SIGN OUT
-						</NavLink>
+						</NavLinkCustom>
 					) : (
-						<NavLink to="/auth">SIGN IN</NavLink>
+						<NavLinkCustom to='/auth'>SIGN IN</NavLinkCustom>
 					)}
-					<NavLink to="/contact">CONTACT</NavLink>
+					<NavLinkCustom to='/contact'>CONTACT</NavLinkCustom>
 					<CartIcon />
 				</NavLinks>
 				{showCart && <CartDropdown />}
 			</NavigationContainer>
+			{currentUser && welcomeMessage()}
 			<Outlet />
 		</Fragment>
-	);
-};
+	)
+}
 
-export default Navigation;
+export default Navigation

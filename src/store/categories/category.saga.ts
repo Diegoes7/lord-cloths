@@ -1,24 +1,27 @@
-import {takeLatest, all, call, put } from 'typed-redux-saga/macro'
-import { getCollectionAndDocuments } from '../../utils/firebase/firebase.utils';
-import { fetchCategoriesSuccess, fetchCategoriesFailed } from './category.action';
-import { CATEGORIES_ACTION_TYPES } from './category.types';
+import { takeLatest, all, call, put } from 'typed-redux-saga/macro'
+import { getCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
+import {
+	fetchCategoriesFailed,
+	fetchCategoriesStart,
+	fetchCategoriesSuccess,
+} from './category.slice'
 
 export function* fetchCategoriesAsync() {
 	try {
-		const categoriesArray = yield* call(getCollectionAndDocuments);
-		yield* put(fetchCategoriesSuccess(categoriesArray));
+		const categoriesArray = yield* call(getCollectionAndDocuments)
+		yield* put(fetchCategoriesSuccess(categoriesArray))
 	} catch (error) {
-		yield* put(fetchCategoriesFailed(error as Error));
+		yield* put(fetchCategoriesFailed(error as Error))
 	}
-};
-
-export function* onFetchCategories(){
-    yield* takeLatest(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START, fetchCategoriesAsync)
 }
 
-//! accumulator that hold all your sagas related to the category 
-export function* categoriesSaga(){
-yield* all([call(onFetchCategories)])
+export function* onFetchCategories() {
+	yield* takeLatest(fetchCategoriesStart, fetchCategoriesAsync)
+}
+
+//! accumulator that hold all your sagas related to the category
+export function* categoriesSaga() {
+	yield* all([call(onFetchCategories)])
 }
 
 //$ all - effect, say run anything inside, and only complete when all is done, take []

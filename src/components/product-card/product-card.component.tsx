@@ -1,29 +1,27 @@
-import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addItemToCart } from "../../store/cart/cart.action";
-import { selectCartItems } from "../../store/cart/cart.selector";
+import { FC } from 'react'
+import { useDispatch } from 'react-redux'
+import { addItemToCart } from '../../store/cart/cart.slice'
 
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { CategoryItem } from "../../store/categories/category.types";
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component'
+import { CategoryItem } from '../../store/categories/category.slice'
 
 import {
 	ProductCartContainer,
 	Footer,
 	Name,
 	Price,
-} from "./product-card.styles";
+} from './product-card.styles'
 
 type ProductCardProps = {
-	product: CategoryItem;
-};
+	product: CategoryItem
+}
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
-	const { name, price, imageUrl } = product;
-	const dispatch = useDispatch();
-	const cartItems = useSelector(selectCartItems);
+	const { name, price, imageUrl } = product
+	const dispatch = useDispatch()
 
-	const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
-	
+	const addProductToCart = () => dispatch(addItemToCart(product))
+
 	return (
 		<ProductCartContainer>
 			<img src={imageUrl} alt={`${name}`} />
@@ -38,7 +36,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				Add to card
 			</Button>
 		</ProductCartContainer>
-	);
-};
+	)
+}
 
-export default ProductCard;
+export default ProductCard

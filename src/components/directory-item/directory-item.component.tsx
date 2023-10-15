@@ -1,21 +1,21 @@
-import {FC} from 'react'
-import { useNavigate } from "react-router-dom";
+import { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
 	DirectoryItemContainer,
 	BackgroundImage,
 	Body,
-} from "./directory-item.styles";
-import { DirectoryCategory } from '../directory/directory.component';
+} from './directory-item.styles'
+import { DirectoryCategory } from '../directory/directory.component'
 
 type DirectoryItemProps = {
 	category: DirectoryCategory
 }
 
 const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
-	const { imageUrl, title, route } = category;
-	const navigate = useNavigate();
+	const { imageUrl, title, route } = category
+	const navigate = useNavigate()
 
-	const onNavigateHandler = () => navigate(route);
+	const onNavigateHandler = () => navigate(route)
 
 	return (
 		<DirectoryItemContainer onClick={onNavigateHandler}>
@@ -25,7 +25,7 @@ const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
 				<p>Shop Now</p>
 			</Body>
 		</DirectoryItemContainer>
-	);
-};
+	)
+}
 
-export default DirectoryItem;
+export default DirectoryItem
