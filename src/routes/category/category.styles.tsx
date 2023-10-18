@@ -21,13 +21,6 @@ export const CategoryTitle = styled.h2`
 	background-color: black;
 	border-radius: 20px;
 	padding: .65rem ;
-
-	/* &:hover {
-		color: black;
-		background-color: white;
-		border-radius: 20px;
-		transition: all 0.7s ease-in-out;
-	} */
 `
 export const HeaderContainer = styled.div`
 	display: flex;

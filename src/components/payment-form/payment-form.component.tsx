@@ -70,6 +70,10 @@ const PaymentForm = () => {
 		}
 	}
 
+	//! Credit card example number - 4242 4242 4242 4242, 
+	//! month and year after the today
+	//! 424 24242
+
 	return (
 		<PaymentFormContainer>
 			<FormContainer onSubmit={paymentHandler}>

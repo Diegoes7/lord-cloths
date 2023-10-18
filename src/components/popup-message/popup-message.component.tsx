@@ -29,8 +29,8 @@ const PopupMessage = ({
 		<Overlay>
 			{/* <ModalStyles> */}
 			<ModalView>
-				<h2> From email `${email}`</h2>
-				<h2>Complaint `${complaint}` received.</h2>
+				<h2> From email: "{email}".</h2>
+				<h2>Complaint: {complaint} received.</h2>
 				<h2>
 					{' '}
 					Issue Successful Sent. We're going to resolve it as soon as possible.{' '}

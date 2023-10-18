@@ -21,17 +21,11 @@ export const CartIconContainer = styled.div`
 	margin-left: 0.5rem;
 `
 
-export const ShoppingIcon = styled(ShoppingSvg).attrs({
-	activeclassname: 'active',
-})`
+export const ShoppingIcon = styled(ShoppingSvg)`
 	width: 24px;
 	height: 24px;
 
 	&:hover {
-		${hoverStyles}
-	}
-
-	&.active {
 		${hoverStyles}
 	}
 `

@@ -11,7 +11,6 @@ export const PaymentFormContainer = styled.div`
 	background-color: #bec3ca;
 	border-radius: 20px;
 `
-// export const
 
 export const FormContainer = styled.form`
 	height: 10rem;

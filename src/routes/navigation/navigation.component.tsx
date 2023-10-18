@@ -56,7 +56,7 @@ const Navigation = () => {
 				<NavLinks>
 					<NavLinkCustom to='/shop'>SHOP</NavLinkCustom>
 					{currentUser ? (
-						<NavLinkCustom as='span' onClick={signOutUser}>
+						<NavLinkCustom to='/auth' onClick={signOutUser}>
 							SIGN OUT
 						</NavLinkCustom>
 					) : (
@@ -67,7 +67,7 @@ const Navigation = () => {
 				</NavLinks>
 				{showCart && <CartDropdown />}
 			</NavigationContainer>
-			{ currentUser && welcomeMessage()}
+			{currentUser && welcomeMessage()}
 			<Outlet />
 		</Fragment>
 	)

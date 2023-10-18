@@ -19,7 +19,7 @@ export const Title = styled(Link)`
 		cursor: pointer;
 
 		&:hover {
-			padding: 15px 20px;
+			padding: 0.3rem 0.7rem;
 			color: white;
 			background-color: black;
 			border-radius: 20px;

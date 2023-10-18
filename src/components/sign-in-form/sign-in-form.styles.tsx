@@ -4,7 +4,6 @@ export const SignInContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 45%;
-	/* margin-top: 1rem; */
 
 	@media screen and (max-width: 800px) {
 		margin-bottom: 2rem;
