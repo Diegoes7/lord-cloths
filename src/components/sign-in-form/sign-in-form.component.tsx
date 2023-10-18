@@ -61,7 +61,7 @@ const SignInForm = () => {
 	const logInUserMessage = (
 		<NotificationLogInUser>
 			'Already have a logged in user! Please sign out, if you want to log in to
-			another account or create account'{' '}
+			another account or create account.{' '}
 		</NotificationLogInUser>
 	)
 

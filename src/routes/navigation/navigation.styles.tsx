@@ -23,13 +23,7 @@ export const NavigationContainer = styled.div`
 	}
 `
 
-export const LogoContainer = styled(NavLink).attrs({
-	activeclassname: 'active',
-})`
-	&.active {
-		background-color: white;
-	}
-
+export const LogoContainer = styled(NavLink)`
 	height: 100%;
 	width: 70px;
 	padding: 0.8rem;

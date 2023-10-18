@@ -1,8 +1,8 @@
-import { compose, Middleware } from 'redux'
+import { compose } from 'redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { persistStore, persistReducer, PersistConfig } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import logger from 'redux-logger'
+// import logger from 'redux-logger'
 import createSagaMiddleware from '@redux-saga/core'
 
 import { rootSaga } from './root-saga'
@@ -31,10 +31,10 @@ const sagaMiddleware = createSagaMiddleware()
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 //! little library helper run before action hit the reducer
-const middleWares = [
-	process.env.NODE_ENV !== 'production' && logger,
-	sagaMiddleware,
-].filter((middleware): middleware is Middleware => Boolean(middleware))
+// const middleWares = [
+// 	process.env.NODE_ENV !== 'production' && logger,
+// 	sagaMiddleware,
+// ].filter((middleware): middleware is Middleware => Boolean(middleware))
 
 // const composeEnhancer =
 // 	(process.env.NODE_ENV !== 'production' &&
@@ -46,10 +46,7 @@ const middleWares = [
 
 export const store = configureStore({
 	reducer: persistedReducer,
-	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({ serializableCheck: false, thunk: false })
-			.concat(sagaMiddleware)
-			.concat(middleWares),
+	middleware: [sagaMiddleware],
 })
 
 sagaMiddleware.run(rootSaga)

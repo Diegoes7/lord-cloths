@@ -1,8 +1,8 @@
+import React from 'react'
 import { useState, FormEvent, ChangeEvent } from 'react'
 import { AuthError, AuthErrorCodes } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { signUpStart } from '../../store/user/user.slice'
-
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
 
@@ -20,7 +20,7 @@ const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields)
 	const { displayName, email, password, confirmPassword } = formFields
 	const dispatch = useDispatch()
-	const signInUser = useSelector(selectCurrentUser)
+	const currentUser = useSelector(selectCurrentUser)
 
 	const resetFormFields = () => setFormFields(defaultFormFields)
 
@@ -50,7 +50,7 @@ const SignUpForm = () => {
 		setFormFields({ ...formFields, [name]: value })
 	}
 
-	const existingUser = signInUser !== null
+	const existingUser = currentUser !== null
 
 	return (
 		<SignUpContainer>

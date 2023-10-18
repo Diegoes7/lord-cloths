@@ -67,7 +67,7 @@ const Navigation = () => {
 				</NavLinks>
 				{showCart && <CartDropdown />}
 			</NavigationContainer>
-			{currentUser && welcomeMessage()}
+			{ currentUser && welcomeMessage()}
 			<Outlet />
 		</Fragment>
 	)
