@@ -54,7 +54,7 @@ const PaymentForm = () => {
 				card: cardDetails,
 				billing_details: {
 					name: currentUser ? currentUser.displayName : 'Guest',
-          // email:  currentUser?.email
+					// email:  currentUser?.email
 				},
 			},
 		})
@@ -70,25 +70,32 @@ const PaymentForm = () => {
 		}
 	}
 
-	//! Credit card example number - 4242 4242 4242 4242, 
-	//! month and year after the today
-	//! 424 24242
-
 	return (
-		<PaymentFormContainer>
-			<FormContainer onSubmit={paymentHandler}>
-				<h2>Credit Card Payment: </h2>
-				<InputContainer>
-					<CardElement />
-				</InputContainer>
-				<PaymentButton
-					buttonType={BUTTON_TYPE_CLASSES.inverted}
-					isLoading={isProcessingPayment}
-				>
-					Pay Now
-				</PaymentButton>
-			</FormContainer>
-		</PaymentFormContainer>
+		<>
+			<PaymentFormContainer>
+				<FormContainer onSubmit={paymentHandler}>
+					<h2>Credit Card Payment: </h2>
+					<InputContainer>
+						<CardElement />
+					</InputContainer>
+					<PaymentButton
+						buttonType={BUTTON_TYPE_CLASSES.inverted}
+						isLoading={isProcessingPayment}
+					>
+						Pay Now
+					</PaymentButton>
+				</FormContainer>
+			</PaymentFormContainer>
+			<div>
+				<h1>Example Credit Card, to test the payment</h1>
+				<br />
+				{'Credit card example number - 4242 4242 4242 4242'}
+				<br />
+				{'month and year after the today'}
+				<br />
+				{'424 24242'}
+			</div>
+		</>
 	)
 }
 

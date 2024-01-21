@@ -12,7 +12,7 @@ const hoverStyles = css`
 
 export const CartIconContainer = styled.div`
 	width: 45px;
-	height: 45px;
+	height: 3.2rem;
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -22,8 +22,8 @@ export const CartIconContainer = styled.div`
 `
 
 export const ShoppingIcon = styled(ShoppingSvg)`
-	width: 24px;
-	height: 24px;
+	width: 2rem;
+	height: 2rem;
 
 	&:hover {
 		${hoverStyles}
@@ -32,7 +32,7 @@ export const ShoppingIcon = styled(ShoppingSvg)`
 
 export const ItemCount = styled.span`
 	position: absolute;
-	font-size: 10px;
+	font-size: 14px;
 	font-weight: bold;
 	bottom: 12px;
 `

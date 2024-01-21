@@ -117,6 +117,7 @@ const ContactPage = () => {
 					complaint={complaint}
 					email={email}
 					setState={setComplaintFields}
+					closable={true}
 				/>
 			)}
 			<ParagraphContainer>

@@ -59,6 +59,7 @@ export const ContactFormComplaint = styled.form`
 		height: 9.375rem;
 		width: 20.625rem;
 		margin-bottom: 0.625rem;
+		resize: none;
 	}
 `
 

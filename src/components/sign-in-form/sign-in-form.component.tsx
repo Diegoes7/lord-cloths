@@ -1,4 +1,4 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import React, { useState, FormEvent, ChangeEvent } from 'react'
 import { AuthError, AuthErrorCodes } from 'firebase/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -33,6 +33,13 @@ const SignInForm = () => {
 	const signWithGoogle = async () => {
 		dispatch(googleSignInStart())
 	}
+
+	// React.useEffect(() => {
+	// 	if (!!signInUser !== false) {
+	// 		console.log(existingUser)
+	// 		setTimeout(() => nav('/'), 1000)
+	// 	}
+	// }, [signInUser])
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -91,10 +98,11 @@ const SignInForm = () => {
 					disabled={existingUser}
 				/>
 				<ButtonContainer>
-					<Button disabled={existingUser} type='submit'>
+					<Button title='Sing in' disabled={existingUser} type='submit'>
 						Sign In
 					</Button>
 					<Button
+					 title='Use your google account to Sign in'
 						type='button'
 						buttonType={BUTTON_TYPE_CLASSES.google}
 						onClick={signWithGoogle}

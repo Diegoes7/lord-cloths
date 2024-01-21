@@ -31,7 +31,7 @@ export const LogoContainer = styled(NavLink)`
 	&:hover {
 		${hoverStyles}
 	}
-	
+
 	@media screen and (max-width: 800px) {
 		width: 50px;
 		padding: 0;
@@ -75,11 +75,31 @@ export const NavLinkCustom = styled(NavLink).attrs({
 `
 
 export const WelcomeMessage = styled.div`
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	padding: 0 2rem;
 	margin-left: 0.5rem;
-	margin-bottom: 0.7rem;
+	margin-bottom: 1rem;
+
+	@media screen and (max-width: 450px) {
+		padding: 0.2rem;
+	}
 `
 export const WelcomeMessageText = styled.span`
+	display: flex;
+	align-items: center;
 	background-color: #83c3f0;
 	padding: 0.4rem 0.8rem;
 	border-radius: 0.75rem;
+	height: 2.3rem;
+`
+export const ReloadToGetFirebaseAccountInfoStyles = styled.div`
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+`
+
+export const ReloadTitle = styled.h4`
+	margin-right: 2.5rem;
 `

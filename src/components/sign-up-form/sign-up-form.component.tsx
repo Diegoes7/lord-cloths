@@ -9,6 +9,7 @@ import Button from '../button/button.component'
 import { Heading, SignUpContainer } from './sign-up-form.styles'
 import { selectCurrentUser } from '../../store/user/user.selector'
 
+
 const defaultFormFields = {
 	displayName: '',
 	email: '',
@@ -33,6 +34,7 @@ const SignUpForm = () => {
 		try {
 			dispatch(signUpStart({ email, password, displayName }))
 			resetFormFields()
+			// setTimeout(() => alert(currentUser?.email), 1000)
 		} catch (error) {
 			if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
 				alert('Cannot create user, email already in use')
@@ -43,14 +45,12 @@ const SignUpForm = () => {
 	}
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-		// get information out of event {}
+		//$ get information out of event {}
 		const { name, value } = event.target
 
-		//spread the {} and modify one value of this {}
+		//$ spread the {} and modify one value of this {}
 		setFormFields({ ...formFields, [name]: value })
 	}
-
-	const existingUser = currentUser !== null
 
 	return (
 		<SignUpContainer>
@@ -64,7 +64,7 @@ const SignUpForm = () => {
 					value={displayName.trim()}
 					required
 					onChange={handleChange}
-					disabled={existingUser}
+					disabled={!!currentUser}
 				/>
 				<FormInput
 					label='Email'
@@ -73,7 +73,7 @@ const SignUpForm = () => {
 					value={email.trim()}
 					required
 					onChange={handleChange}
-					disabled={existingUser}
+					disabled={!!currentUser}
 				/>
 				<FormInput
 					label='Password'
@@ -82,7 +82,7 @@ const SignUpForm = () => {
 					value={password.trim()}
 					required
 					onChange={handleChange}
-					disabled={existingUser}
+					disabled={!!currentUser}
 				/>
 				<FormInput
 					label='Confirm Password'
@@ -91,9 +91,9 @@ const SignUpForm = () => {
 					value={confirmPassword}
 					required
 					onChange={handleChange}
-					disabled={existingUser}
+					disabled={!!currentUser}
 				/>
-				<Button disabled={existingUser} type='submit'>
+				<Button disabled={!!currentUser} type='submit'>
 					Sign Up
 				</Button>
 			</form>

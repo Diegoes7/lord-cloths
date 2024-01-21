@@ -8,8 +8,9 @@ type Props = {
 	showModalProp: boolean
 	setShowModal: (value: boolean) => void
 	complaint: string
-	email: string
-	setState: (props: FieldsProps) => void
+	email: string 
+	setState?: (props: FieldsProps) => void
+	closable: boolean
 }
 
 const PopupMessage = ({
@@ -18,13 +19,21 @@ const PopupMessage = ({
 	complaint,
 	email,
 	setState,
+	closable,
 }: Props) => {
-	const resetFormFields = () => setState(defaultComplaintFields)
+	const resetFormFields = () => {
+		if (setState) {
+			setState(defaultComplaintFields)
+		}
+	}
 
 	const handleClose = () => {
 		resetFormFields()
-		setShowModal(!showModalProp)
+		if (setShowModal) {
+			setShowModal(!showModalProp)
+		}
 	}
+
 	return (
 		<Overlay>
 			{/* <ModalStyles> */}
@@ -35,7 +44,11 @@ const PopupMessage = ({
 					{' '}
 					Issue Successful Sent. We're going to resolve it as soon as possible.{' '}
 				</h2>
-				<PopupButtonStyles onClick={handleClose}>Close</PopupButtonStyles>
+				{closable === false ? (
+					''
+				) : (
+					<PopupButtonStyles onClick={handleClose}>Close</PopupButtonStyles>
+				)}
 			</ModalView>
 			{/* </ModalStyles> */}
 		</Overlay>
