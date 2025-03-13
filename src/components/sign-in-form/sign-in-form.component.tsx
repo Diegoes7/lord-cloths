@@ -15,6 +15,7 @@ import {
 	NotificationLogInUser,
 } from './sign-in-form.styles'
 import { selectCurrentUser } from '../../store/user/user.selector'
+import { useNavigate } from 'react-router-dom'
 
 const defaultFormFields = {
 	email: '',
@@ -22,11 +23,13 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
+	const nav = useNavigate()
 	const dispatch = useDispatch()
 	const signInUser = useSelector(selectCurrentUser)
 	const [formFields, setFormFields] = useState(defaultFormFields)
 	const { email, password } = formFields
 	const existingUser = signInUser !== null
+	const disabledBtn = email === '' || password === ''
 
 	const resetFormFields = () => setFormFields(defaultFormFields)
 
@@ -34,12 +37,12 @@ const SignInForm = () => {
 		dispatch(googleSignInStart())
 	}
 
-	// React.useEffect(() => {
-	// 	if (!!signInUser !== false) {
-	// 		console.log(existingUser)
-	// 		setTimeout(() => nav('/'), 1000)
-	// 	}
-	// }, [signInUser])
+	React.useEffect(() => {
+		if (signInUser) {
+			console.log(existingUser)
+			setTimeout(() => nav('/'), 1000)
+		}
+	}, [existingUser, nav, signInUser])
 
 	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -98,15 +101,15 @@ const SignInForm = () => {
 					disabled={existingUser}
 				/>
 				<ButtonContainer>
-					<Button title='Sing in' disabled={existingUser} type='submit'>
+					<Button title='Sing in' type='submit' disabled={disabledBtn}>
 						Sign In
 					</Button>
 					<Button
-					 title='Use your google account to Sign in'
+						title='Use your google account to Sign in'
 						type='button'
 						buttonType={BUTTON_TYPE_CLASSES.google}
 						onClick={signWithGoogle}
-						disabled={existingUser}
+						// disabled={disabledBtn}
 					>
 						Google Sign In
 					</Button>

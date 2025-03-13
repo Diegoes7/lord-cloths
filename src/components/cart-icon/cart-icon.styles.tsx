@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { ReactComponent as ShoppingSvg } from '../../assets/shopping-bag.svg'
 
 const hoverStyles = css`
-	transform: scale(1.5);
+	transform: scale(1.3);
 	transition: ease-in-out 0.7s;
 	background-color: #d3eaf4;
 	padding: 0.1rem;

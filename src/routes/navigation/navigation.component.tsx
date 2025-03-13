@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { signOutStart } from '../../store/user/user.slice'
 import { selectShowCart } from '../../store/cart/cart.selector'
+import React from 'react'
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component'
 import CartIcon from '../../components/cart-icon/cart-icon.component'
 import { selectCurrentUser } from '../../store/user/user.selector'
@@ -23,19 +24,20 @@ import {
 import Button, {
 	BUTTON_TYPE_CLASSES,
 } from '../../components/button/button.component'
-import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 const Navigation = () => {
 	const dispatch = useDispatch()
-	const navigate = useNavigate()
+	const location = useLocation()
+	// const navigate = useNavigate()
 
 	const currentUser = useSelector(selectCurrentUser)
 	const showCart = useSelector(selectShowCart)
 
 	const signOutUser = React.useCallback(() => {
 		dispatch(signOutStart())
-		navigate('/auth')
-	}, [dispatch, navigate])
+		// navigate('/auth')
+	}, [dispatch])
 
 	const welcomeMessage = useCallback(() => {
 		const setProp =
@@ -71,12 +73,14 @@ const Navigation = () => {
 				</LogoContainer>
 				<NavLinks>
 					<NavLinkCustom to='/shop'>SHOP</NavLinkCustom>
-					<NavLinkCustom to='/auth'>SIGN IN</NavLinkCustom>
-					{/* {currentUser ? (
-						<NavLinkCustom to='/auth'>SIGN OUT</NavLinkCustom>
+					{/* <NavLinkCustom to='/auth'>SIGN IN</NavLinkCustom> */}
+					{currentUser ? (
+						<NavLinkCustom to='' onClick={signOutUser} end>
+							SIGN OUT
+						</NavLinkCustom>
 					) : (
 						<NavLinkCustom to='/auth'>SIGN IN</NavLinkCustom>
-					)} */}
+					)}
 					<NavLinkCustom to='/contact'>CONTACT</NavLinkCustom>
 					<CartIcon />
 				</NavLinks>

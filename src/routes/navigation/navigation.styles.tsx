@@ -53,6 +53,11 @@ export const NavLinks = styled.div`
 export const NavLinkCustom = styled(NavLink).attrs({
 	activeclassname: 'active',
 })`
+	// Reset any active state styles
+	&.active {
+		all: unset;
+	}
+
 	&.active {
 		border-bottom: 0.2rem solid black;
 		padding: 0.7rem 1rem 0.3rem;

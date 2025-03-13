@@ -9,7 +9,6 @@ import Button from '../button/button.component'
 import { Heading, SignUpContainer } from './sign-up-form.styles'
 import { selectCurrentUser } from '../../store/user/user.selector'
 
-
 const defaultFormFields = {
 	displayName: '',
 	email: '',
@@ -22,6 +21,11 @@ const SignUpForm = () => {
 	const { displayName, email, password, confirmPassword } = formFields
 	const dispatch = useDispatch()
 	const currentUser = useSelector(selectCurrentUser)
+	const disabledBtn =
+		email === '' ||
+		password === '' ||
+		confirmPassword === '' ||
+		displayName === ''
 
 	const resetFormFields = () => setFormFields(defaultFormFields)
 
@@ -93,7 +97,7 @@ const SignUpForm = () => {
 					onChange={handleChange}
 					disabled={!!currentUser}
 				/>
-				<Button disabled={!!currentUser} type='submit'>
+				<Button disabled={disabledBtn} type='submit'>
 					Sign Up
 				</Button>
 			</form>
